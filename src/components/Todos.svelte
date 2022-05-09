@@ -1,13 +1,9 @@
 <script lang="ts">
-    export let uid: number = 0;
-    export let text: string = '';
+    import type { ITodo, ITodoUid, ITodoText } from "./types.ts";
 
-    type Todo = {
-        uid: number;
-        text: string;
-    };
-
-    export let todos: Todo[] = [];
+    export let uid: ITodoUid = 0;
+    export let text: ITodoText = '';
+    let todos: ITodo[] = [];
 
     $: {
         if (uid && text) {
@@ -20,8 +16,10 @@
     }
 </script>
 
-{#each todos as todo (todo.uid)}
-    <p>
-        {todo.text}
-    </p>
-{/each}
+<ul class="todo">
+    {#each todos as todo (todo.uid)}
+        <li>
+            {todo.text}
+        </li>
+    {/each}
+</ul>
