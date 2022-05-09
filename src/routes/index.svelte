@@ -1,10 +1,15 @@
 <script>
     import InputText from "../components/InputText.svelte";
+    import Todos from "../components/Todos.svelte";
 
-    let result = '';
+    const todo = {
+        text: '',
+        uid: 0,
+    };
 
     function handleMessage(event) {
-        result = event.detail.value;
+        todo.text = event.detail.value;
+        todo.uid = todo.uid + 1;
     }
 </script>
 
@@ -13,7 +18,7 @@
 <div class="wrapper">
     <InputText on:enter={handleMessage}/>
 
-    {result}
+    <Todos {...todo}/>
 </div>
 
 <style>
